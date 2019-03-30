@@ -1,7 +1,7 @@
 #include <stdio.h> /*include information about standard library*/
 #include <ctype.h> /*Functions to determine the type contained in character data*/
 
-int main(){
+int main(void){
     int x,y,n,i,j;
     char c, option;
     float salary;
