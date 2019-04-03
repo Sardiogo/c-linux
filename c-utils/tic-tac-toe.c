@@ -10,12 +10,11 @@ int line(char v[],char c);
 int column(char g[DIM][DIM], int col,char ch);
 int diagonal(char g[DIM][DIM], char ch);
 
-int main()
-{
+int main(){
 	char game[DIM][DIM];
 	int posx, posy;
 	char ch = '0'; 
-	int n_jogadas = 0;
+	int n_moves = 0;
 	inic(game);
 	while (1){
 		/* Infinite Cycle */
@@ -32,7 +31,7 @@ int main()
 		posx--;posy--; /* Because the vector indices start at ZERO */
 		if(game[posx][posy] == SPACE){
 			game[posx][posy] = ch = (ch == '0') ? 'X' : '0';
-			n_jogadas++;
+			n_moves++;
 			if(win(game, ch)){
 				printf("\n\n**** Player %c won ****\n\n", ch);
 				break;
@@ -40,7 +39,7 @@ int main()
 		}
 		else
 			printf("\n\tAlready occupied position\n\tPlay Again!!!\n");
-		if(n_jogadas==DIM*DIM){ 
+		if(n_moves==DIM*DIM){ 
 			printf("\n\n**** It's a draw, try a rematch ***\n\n");
 			break;
 		}
