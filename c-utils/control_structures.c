@@ -64,7 +64,7 @@ int main(void){
             case 'E':
                 break; /* Don't do anything */
             default:
-                puts("Incorrect Option!!!");
+                puts("Invalid Option!!!");
         }
         getchar(); /* Stop Screen */
     } while (option!= 'e' && option != 'E');
