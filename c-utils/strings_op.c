@@ -2,57 +2,39 @@
 #include <string.h>
 #include <ctype.h>
 
-#define DIM 20
+#define DIM 64
 #define NAME_SEP ", "
 
-/*1 Counts the number of letters in a sentence */
+/*Counts the number of letters in a sentence */
     int strcount(char *s);
-/*2 Find the largest ASCII in a string */
+/*Find the largest ASCII in a string */
     char Max_Ascii(char *str);
-/*3 Converts each character in the following ASCII  */
+/*Converts each character in the following ASCII  */
     char *next_char(char *s);
-/*4 Toggle string letters between uppercase and lowercase */
+/*Toggle string letters between uppercase and lowercase */
     char *UpDown(char *s);
-/*5 Replace string letters with spaces */
+/*Replace string letters with spaces */
     char *allspaces(char *s);
-/*6 Place strings only in lowercase */
+/*Place strings only in lowercase */
     char *strlwr(char *str);
-/*7 Initializes string */
+/*Place strings only in Upercase */
+    char *struper(char *str);
+/*Initializes string */
     char *init_str(char *s);
-/*6 Only return string characters that are in uppercase */
+/*Remove string characters in lowercase */
     char *All_Big(char *s);
-/*7 Find the nth character in the string */
+/*Find the nth character in the string */
     char nth_char(char *s, int n);
-/*8 Clears all upper characters in the string */
+/*Clears all upper characters in the string */
     char *StrDelUpper(char *s);
-/*9 Clean stdin */
+/*Clean stdin */
     void cleanstdin();
-/*10 Replace \ n with space */
+/*Replace \ n with space */
     char *delenter(char *s);
-/*11 Print a string foward and backword*/
+/*Print a string foward and backword*/
     char *forward_back(char *s);
-/*12 Test the answer to a given question*/
+/*Test the answer to a given question*/
     int y_or_n_p(char *question);
-    /*
-'\0' = NULL
-    The '\ 0' character whose ASCII code is 0 has nothing to do with the '0' character whose ASCII code is 48.
-    A string always corresponds to a vector of characters with a special character as a delimiter (''\0 ").
-'n'
-    1 char, a char is one byte on all architectures.
-"n"
-    2 chars, the string with one character, but it takes two characters of storage
-    countining one n and one terminating NULL char.
-    The string is implicitly null-terminated, so it will take up one more byte than the observable number of characters.
-'\n'
-    1 char, 1byte, the newline (ctrl-J on ASCII based systems)
-"\n"
-    2 chars, 2 bytes, as \n stand for "new line" which takes one byte, plus one byte for the null char.
-"\\n"
-    3 chars, 3 bytes, one for \, one for newline and the null character
-""
-    1 char, 1 byte, just the null character.
-    The string literal, countining one terminating NULL char.
-*/
 
 /*Some code to test sting_op.h*/
 int main(void)
@@ -86,6 +68,7 @@ int main(void)
             printf("Toggle string letters:\n\t %s\n",UpDown(full_name));
             printf("Remove string characters in lowercase:\n\t %s\n", All_Big(full_name));
             printf("Turn upercase to lowercase:\n\t %s\n", strlwr(full_name));
+            printf("Turn lowercase to upercase:\n\t %s\n", struper(full_name));
             printf("Replace letters with spaces:\n\t\"%s\"\n", allspaces(full_name));
             printf("Delete spaces:\n\t\"%s\"\n", init_str(full_name));
         }
@@ -93,85 +76,96 @@ int main(void)
     return 0;
 }
 
-/*1 Counts the number of letters in a sentence */
+/*Counts the number of letters in a sentence */
 int strcount(char *s)
 {
-	int i,count;
-	for (i=count=0 ; s[i]!='\0' ; i++)
-		if (isalpha(s[i]))
-			count++;
-	return count;
+    int i,count;
+    for (i=count=0 ; s[i]!='\0' ; i++)
+        if (isalpha(s[i]))
+            count++;
+    return count;
 }
 
-/*2 Find the largest ASCII in a string */
+/*Find the largest ASCII in a string */
 char Max_Ascii(char *str)
 {
     int i;
     char res = '\0'; /*Lowest ASCII Code */
     for (i=0; str[i]!='\0';i++)
-		res = res > str[i] ? res : str[i];
-	return res;
+        res = res > str[i] ? res : str[i];
+    return res;
 }
 
-/*3 Converts each character in the following ASCII  */
-char *next_char(char *s){
-	int i;
-	for (i=0;s[i]!='\0';i++)
-		s[i]=s[i]+1;
-	return s;
+/*Converts each character in the following ASCII  */
+char *next_char(char *s)
+{
+    int i;
+    for (i=0;s[i]!='\0';i++)
+        s[i]=s[i]+1;
+    return s;
 }
 
-/*4 Toggle string letters between uppercase and lowercase */
+/*Toggle string letters between uppercase and lowercase */
 char *UpDown(char *s)
 {
-	int i;
-	for (i=0;s[i]!='\0'; i++)
-			s[i] = (i%2==0) ? toupper(s[i]) : tolower(s[i]);
-	return s;
+    int i;
+    for (i=0;s[i]!='\0'; i++)
+        s[i] = (i%2==0) ? toupper(s[i]) : tolower(s[i]);
+    return s;
 }
 
-/*5 Replace string letters with spaces */
+/*Replace string letters with spaces */
 char *allspaces(char *s)
 {
-	int i;
-	for (i=0;s[i]!='\0'; i++)
-		s[i]=' ';
-	return s;
+    int i;
+    for (i=0;s[i]!='\0'; i++)
+        s[i]=' ';
+    return s;
 }
 
-/*6 Place strings only in lowercase */
+/*Place strings only in lowercase */
 char *strlwr(char *str)
 {
-	int i;
-	for (i=0 ; str[i]!='\0' ; i++)
-		str[i] = tolower(str[i]);
-	return str;
+    int i;
+    for (i=0 ; str[i]!='\0' ; i++)
+        str[i] = tolower(str[i]);
+    return str;
 }
 
-/*7 Initializes string */
+/*Place strings only in Upercase */
+char *struper(char *str)
+{
+    int i;
+    for (i = 0; str[i] != '\0'; i++)
+        str[i] = toupper(str[i]);
+    return str;
+}
+
+/*Initializes string */
 char *init_str(char *s)
 {
-	s[0] = '\0';
-	return s;
+    s[0] = '\0';
+    return s;
 }
 
-/*Only return string characters that are in uppercase */
-char * All_Big(char *s){
-  int i,j;
-  for (i=j=0; s[i]!='\0'; i++)
-	 if (isupper(s[i]))
-		s[j++]=s[i];
-  s[j]='\0';
-  return s;
+/*Remove string characters in lowercase */
+char * All_Big(char *s)
+{
+    int i,j;
+    for (i=j=0; s[i]!='\0'; i++)
+        if (isupper(s[i]))
+          s[j++]=s[i];
+    s[j]='\0';
+    return s;
 }
 
-/*7 Find the nth character in the string */
+/*Find the nth character in the string */
 char nth_char(char *s, int n)
 {
     return s[n - 1]; /*Because the indexes of the vectors start at 0*/
 }
 
-/*8 Clears all upper characters in the string */
+/*Clears all upper characters in the string */
 char *StrDelUpper(char *s)
 {
     char *prim, *ptr;
@@ -187,24 +181,24 @@ char *StrDelUpper(char *s)
     return prim;
 }
 
-/*9 Clean stdin */
+/*Clean stdin */
 void cleanstdin()
 {
-    char s[100];
+    char s[256];
     fgets(s, sizeof(s), stdin);
 }
 
-/*10 Replace \n with space */
+/*Replace \n with space */
 char *delenter(char *s)
 {
-	int i;
-	for (i=0;s[i]!='\0'; i++)
-		if (s[i]=='\n')
+    int i;
+    for (i=0;s[i]!='\0'; i++)
+        if (s[i]=='\n')
             s[i]=' ';
-	return s;
+    return s;
 }
 
-/*11 Print a string foward and backword*/
+/*Print a string foward and backword*/
 char *forward_back(char *s)
 {
     char *ptr = s;
@@ -225,7 +219,7 @@ char *forward_back(char *s)
     return s;
 }
 
-/*12 Test the answer to a given question*/
+/*Test the answer to a given question*/
 int y_or_n_p(char *question)
 {
     fputs(question, stdout);
