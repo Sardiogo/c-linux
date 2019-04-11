@@ -1,8 +1,14 @@
 #include <stdio.h>
+#include <assert.h>
 
 void add(int a, int b);
 void subtract(int a, int b);
 void multiply(int a, int b);
+int Square(int x);
+int Double(int x);
+int Cube(int x);
+int Abs(int x);
+void PrintSpecial(int (*fun)(int), int n);
 void caller(void (*fun)(int, int));
 void fun1(void);
 void fun2(void);
@@ -54,6 +60,16 @@ void multiply(int a, int b)
 {
     printf("%d x %d = %d\n", a, b, a * b);
 }
+int Square(int x) { return x * x; }
+int Double(int x) { return 2 * x; }
+int Cube(int x) { return Square(x) * x; }
+int Abs(int x) { return x < 0 ? -x : x; }
+void PrintSpecial(int (*fun)(int), int n)
+{
+    assert(fun != NULL);
+    /* If expression evaluates to TRUE, assert() does nothing. If expression evaluates to FALSE, assert() displays an error message on stderr and aborts program */
+    printf("<<<|%d|>>>\n", (*fun)(n));
+}
 /*A function that receives a function as parameter and calls that function*/
 void caller(void (*fun)(int, int))
 {
@@ -74,6 +90,10 @@ void test(void)
     caller(multiply);
     wrapper(fun1);
     wrapper(fun2);
+    PrintSpecial(Square, 3);
+    PrintSpecial(Double, 10);
+    PrintSpecial(Cube, 5);
+    PrintSpecial(Abs, -2);
 }
 /*A compare function that is used for searching an integer array*/
 int compare(void *a, void *b)

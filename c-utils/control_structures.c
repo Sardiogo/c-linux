@@ -45,8 +45,13 @@ int main(void){
         printf("\n\n\t\tOrders");
         printf("\n\n\t\tExit");
         printf("\n\n\n\t\t\tOption:");
-        scanf(" %c", &option);
-        fflush(stdin); /* Clear keyboard buffer */
+        /* Stop Screen*/
+        fscanf(stdin, " %c", &option); 
+        /* space before %c clears enter*/
+        /*Test enter*/
+        c = getc(stdin);
+        if (c != '\n')
+            ungetc(c, stdin);
         switch (option){
             case 'c':
             case 'C':
@@ -66,7 +71,6 @@ int main(void){
             default:
                 puts("Invalid Option!!!");
         }
-        getchar(); /* Stop Screen */
     } while (option!= 'e' && option != 'E');
     /*******************************************************/
     n=10;
