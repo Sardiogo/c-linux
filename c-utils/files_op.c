@@ -81,7 +81,7 @@ void insert_lines(void)
     clean_enter(); /*Test enter*/
     str_creator(str, '\n');
     for(int i=0;i<n;i++){
-        fprintf(f,"%s %d\n",str,i+1);
+        fprintf(f,"%-3d %s\n",i+1,str);
         if (ferror(f)){
             perror("Error writing to file");
             break;
