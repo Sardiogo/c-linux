@@ -4,10 +4,12 @@
 #include "files_op.h"
 #include "argv-memory_op.h"
 #include "strings_op.h"
+#include "list_structure.h"
 /*Uncomment the desired library to test:*/
 /*#define TEST_FILES_OP*/
 /*#define TEST_ARGV_MEMORY_OP*/
 /*#define TEST_STRINGS_OP*/
+#define TEST_LIST_STRUCTURE
 
 int main(int argc, char *argv[], char **env)
 {
@@ -89,6 +91,20 @@ int main(int argc, char *argv[], char **env)
             printf("Delete spaces:\n\t\"%s\"\n", init_str(full_name));
         }
     } while (op != 1);
+#endif
+#ifdef TEST_LIST_STRUCTURE
+    List *list;
+    Init(&list);
+    Load(&list);
+    printf("\n\n***** Display Content *****\n\n");
+    List_display(list);
+    Save(&list);
+    Remove(&list, 1);
+    printf("\n\n***** Display Content *****\n\n");
+    List_display(list);
+    Load_bin(&list);
+    printf("\n\n***** Display Content *****\n\n");
+    List_display(list);
 #endif
     return 0;
 }

@@ -1,14 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "list_structure.h"
 
 /*Implements a dynamic list of names with id's (positive numbers) in which the odd numbers id's are all together at the top of the list and the pairs numbers id's are all together at the bottom of the list.*/
-
-typedef struct LIST{
-    unsigned int N; /*Name id*/
-    char Name[40 + 1];
-    struct LIST *next;
-} List;
 
 void Init(List **ptr)
 {
@@ -94,7 +89,8 @@ int Remove(List **ptr, unsigned int Num)
     return 0;
 }
 
-int Save(List **L){
+int Save(List **L)
+{
     List *aux =  *L;
     FILE *fp = fopen("./files/test-out.bin", "wb");
     if (fp == NULL)
@@ -121,21 +117,4 @@ void List_display(List *list)
         printf("\t\t(list->next)->next  %5p\n\n", (void *)(list->next)->next);
     }
     List_display(list->next);
-}
-
-int main(void)
-{
-    List *list;
-    Init(&list);
-    Load(&list);
-    printf("\n\n***** Display Content *****\n\n");
-    List_display(list);
-    Save(&list);
-    Remove(&list, 1);
-    printf("\n\n***** Display Content *****\n\n");
-    List_display(list);
-    Load_bin(&list);
-    printf("\n\n***** Display Content *****\n\n");
-    List_display(list);
-    return 0;
 }
