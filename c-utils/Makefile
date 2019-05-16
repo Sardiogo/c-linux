@@ -24,7 +24,7 @@ RM = rm -rf
 ##########################
 # Compilation and linking
 ##########################
-.PHONY: all clean exe objFolder
+.PHONY: all clean exe objFolder control_structures functions_pointers_op pointers-arrays_op tic-tac-toe
 
 all: objFolder $(PROJ_NAME)
 	@ echo "Main Makefile done"
@@ -52,3 +52,23 @@ clean:
 
 exe: $(PROJ_NAME)
 	./$(PROJ_NAME)
+
+control_structures: ./src/control_structures.c
+	$(CC) $(CC_FLAGS) -o $@ $<
+	./$@
+	rm $@
+
+functions_pointers_op: ./src/functions_pointers_op.c
+	$(CC) $(CC_FLAGS) -o $@ $<
+	./$@
+	rm $@
+
+pointers-arrays_op: ./src/pointers-arrays_op.c
+	$(CC) $(CC_FLAGS) -o $@ $<
+	./$@
+	rm $@
+
+tic-tac-toe: ./src/tic-tac-toe.c
+	$(CC) $(CC_FLAGS) -o $@ $<
+	./$@
+	rm $@
