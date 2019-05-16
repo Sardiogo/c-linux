@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define FILES_PATH "./files/"
+#include "files_op.h"  /*because FILES_PATH Macro is used*/
 
 void clean_enter(void)
 {
@@ -88,31 +88,4 @@ void insert_lines(void)
         }
     }
     fclose(f);
-}
-
-int main(void)
-{
-    int option;
-    do{
-        printf("Choose operation number:\n");
-        printf("\n\t1: insert_lines()");
-        printf("\n\t2: fcopy()");
-        printf("\n\t3: Exit");
-        printf("\n\n\tOption:");
-        fscanf(stdin, " %d", &option);
-        clean_enter(); /*Test enter*/
-        switch (option){
-            case 1:
-                insert_lines();
-                break;
-            case 2:
-                ffcopy();
-                break;
-            case 3:
-                break;
-            default:
-                puts("Invalid Option!!!");
-        }
-    } while (option != 3);
-    return 0;
 }
