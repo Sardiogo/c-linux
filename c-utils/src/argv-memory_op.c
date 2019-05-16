@@ -4,38 +4,6 @@
 #include <string.h>
 
 /*Find lengths in bytes of all argv*/
-int count_argv_bytes(int arg_c, char **arg_v);
-/*Creates a clone of argv*/
-char **argv_clone(int argc, char **argv);
-/*Prints program arguments entered on the command line */
-void display_argv(int argc, char **argv);
-/*Invert and print the order of command line arguments */
-void invert_argv(int argc, char **argv);
-/*Creates a single string with with each argument of argv spaced by a separator*/
-char *argv_single_str(int argc, char **argv, char *separator);
-/*Adds the integer numbers inserted as arguments*/
-int argv_isum(int argc, char **argv);
-/*Show environment variables*/
-void display_env(char **env);
-
-int main(int argc, char *argv[], char **env)
-{
-    printf("atoi(\"%s\") = %d\n", "98993489", atoi("98993489"));
-    printf("atoi(\"%s\") = %d\n", "SDFAeevf 9885", atoi("SDFAeevf 9885"));
-    puts("");
-    display_argv(argc,argv);
-    puts("");
-    invert_argv(argc,argv);
-    puts("");
-    puts(argv_single_str(argc, argv," - "));
-    puts("");
-    printf("Sum of all int program arguments = %d\n", argv_isum(argc,argv));
-    puts("");
-    display_env(env);
-    return 0;
-}
-
-/*Find lengths in bytes of all argv*/
 int count_argv_bytes(int arg_c, char **arg_v)
 {
 	int i,j,k;
